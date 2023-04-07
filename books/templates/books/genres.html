@@ -1,0 +1,21 @@
+{% extends 'books/base.html' %}
+{% block title %}{{ genre.name }}{% endblock title %}
+{% block content %}
+<h2><p align="center" style="font-size:30px"> Каталог товаров по жанру "{% if genre %}{{ genre }}{% else %}{{ subgenre }}{% endif %}"<br />
+    {% if genre %}Вы можете выбрать книги по категориям, а так же применить фильтры!{% endif %}</p></h2>
+
+<ul class="hr">
+    {% if genre %}
+    {% for subg in subgenre %}
+   <li style="font-size:25px"><a href="{{ subg.get_absolute_url }}">{{ subg.name }}</a></li>
+    {% endfor %}
+    {% endif %}
+</ul>
+
+{% include 'books/filter.html' %}
+
+
+{% include 'books/booklist.html' %}
+
+
+{% endblock content %}

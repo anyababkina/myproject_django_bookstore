@@ -1,0 +1,19 @@
+{% extends 'books/base.html' %}
+{% block title %}{{ book.title }}{% endblock title %}
+{% block content %}
+<h2><p align="center" style="font-size:30px">О книге "{{ book.title }}"</p></h2>
+{% if book.img %}<img src="{{ book.img.url }}" align="left" width="780" height="780" />{% endif %}
+<h2><p align="left" style="font-size:25px">{{ book.title }}</p></h2>
+<p align="left" style="font-size:20px"> Автор(ы):
+    {% for a in authors %}
+        <a href="{{ a.get_absolute_url }}">{{ a }}</a>
+    {% endfor %}
+</p>
+<p align="left" style="font-size:20px"> Жанр: <a href="{{ book.subgenre.get_absolute_url }}">{{ book.subgenre }}</a></p>
+<p align="left" style="font-size:20px"> {{ book.description }}</p>
+{% if book.amount < 4 %} <p style="color:red; font-size:20px; font-weight:bolder;">Товар скоро закончится! Осталось: {{ book.amount }}</p>{% endif %}
+<p align="right" style="font-size:20px"> {{ book.price }} р.</p>
+<p align="center" class="link-buy-book"><a href="{% url 'add_basket' book.id %}">Купить книгу</a></p>
+
+
+{% endblock content %}

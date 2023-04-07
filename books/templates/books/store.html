@@ -1,0 +1,17 @@
+{% extends 'books/base.html' %}
+{% block title %}buy books{% endblock title %}
+{% block content %}
+<h2><p align="center" style="font-size:30px"> Общий каталог товаров<br />Вы можете выбрать книги по категориям, а так же применить фильтры!</p></h2>
+
+<ul class="hr">
+    {% for g in genre %}
+   <li style="font-size:25px"><a href="{{ g.get_absolute_url }}">{{ g.name }}</a></li>
+    {% endfor %}
+</ul>
+
+{% include 'books/filter.html' %}
+
+{% include 'books/booklist.html' %}
+
+
+{% endblock content %}

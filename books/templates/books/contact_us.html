@@ -1,0 +1,9 @@
+{% extends 'books/base.html' %}
+{% block title %}contact us{% endblock title %}
+{% block content %}
+    <p align="left" style="front-size:15px">Вы можете заказать книги онлайн, оформив самовывоз или доставку:<br />
+    Телефон для связи по вопросам заказа и доставки: {{ number_dev }}, {{ name_dev }}<br /></p>
+    <p align="left" style="front-size:15px">Найти нас можно по адресу: <br /> {{ address.city }}, {{ address.street_home }}, <br />телефон {{ address.number }}<br /></p>
+    <p align="left" style="front-size:15px">Мы всегда поможем вам в случае проблем с магазином, а так же открыты к новым предложениям! Контакты для связи: <br />
+        Телефон: {{ admin.number }} <br />Email: {{ admin.email }} <br /> {{ admin.name }} </p>
+{% endblock content %}

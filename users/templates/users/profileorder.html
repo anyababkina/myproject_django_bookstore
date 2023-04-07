@@ -1,0 +1,13 @@
+<div class="order">
+<h2><p align="right" style="font-size:20px">Мои заказы</p></h2>
+<hr>
+{% for o in order %}
+    <p><a href="{{ o.get_absolute_url }}">Заказ {{ o.id }}</a></p>
+    <p>Этап: {{ o.step.name }}</p>
+    <p>Доставка: {{ o.way.name }}</p>
+    <p align="left">Сумма заказа: {{ o.total_sum }} р.</p>
+    {% if o.date_finish %}<p>Заказ получен: {{ o.date_finish }}</p>{% endif %}
+    <br />
+    <hr />
+{% endfor %}
+</div>

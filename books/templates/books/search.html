@@ -1,0 +1,13 @@
+{% extends 'books/base.html' %}
+{% block title %} Поиск {% endblock title %}
+{% block content %}
+
+<h2><p align="center" style="font-size:30px"> Вот что удалось найти по поиску "{{ query }}"</p></h2>
+
+{% include 'books/filter.html' %}
+
+
+{% include 'books/booklist.html' %}
+
+
+{% endblock content %}

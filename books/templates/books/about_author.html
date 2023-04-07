@@ -1,0 +1,9 @@
+{% extends 'books/base.html' %}
+{% block title %}{{ author }}{% endblock title %}
+{% block content %}
+<h2><p align="center" style="font-size:30px"> Все книги автора {{ author }}</p></h2>
+
+{% include 'books/booklist.html' %}
+
+
+{% endblock content %}

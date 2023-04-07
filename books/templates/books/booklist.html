@@ -1,0 +1,8 @@
+{% for b in book %}
+    <p style="font-size:25px"><a href="{{ b.get_absolute_url }}">{{ b.title }}</a></p><p align="right" style="font-size:25px"> {{ b.price }} р.</p>
+    <p style="font-size:20px"> {{ b.description }} </p>
+    {% if b.amount < 4 %} <p style="color:red; font-size:20px; font-weight:bolder;">Товар скоро закончится! Осталось: {{ b.amount }}</p>{% endif %}
+    <p align="right" class="link-buy-book"><a href="{% url 'add_basket' b.id %}">Купить книгу</a></p>
+    <br />
+    <hr />
+{% endfor %}

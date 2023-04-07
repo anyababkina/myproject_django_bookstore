@@ -1,0 +1,175 @@
+html, body {
+	font-family: 'Arial';
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	color: #444;
+}
+
+a {
+	color: #000;
+	text-decoration: none;
+}
+a:hover {
+	color: #ab6418;
+	text-decoration: underline;
+}
+
+.table-page {
+	width: 100%;
+	height: 100%;
+	vertical-align: top;
+}
+.table-page tr {height: 100%;}
+
+.clear {clear: both;}
+
+.header {
+	background: #cc712b;
+	height: 60px;
+}
+
+
+ul.mainmenu {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	height: 60px;
+	color: #d1174c;
+	font-size: 20px;
+	overflow: hidden;
+}
+ul.mainmenu li {
+	float: left;
+	margin: 18px 40px 0 30px;
+}
+
+ul.mainmenu li.last {float: right;}
+
+ul.mainmenu li a {
+	color: #062b0f;
+	text-decoration: none;
+}
+ul.mainmenu li a:hover {
+	color: #FDA83D;
+}
+
+
+
+
+.messages li.error { background: red; }
+.messages li.success { background: green; }
+
+
+ul.hr {
+	text-align: center;
+	margin: 0 0 20px 0;
+   }
+ul.hr li {
+ 	display: inline-block;
+	margin: 0 20px 0 0;
+   }
+
+.ul.hr a {
+	color: #000;
+	font-size: 24px;
+	text-decoration: none;
+}
+
+p.link-buy-book {
+	text-align: right;
+}
+p.link-buy-book a {
+	padding: 10px;
+	min-width: 100px;
+	background: #cc712b;
+	color: #000;
+	text-decoration: none;
+}
+
+p.link-buy-book a:hover {
+	color: #FDA83D;
+}
+
+.content-text {
+	margin: 60px 0 0 30px;
+	color: #000;
+	font-size: 20px;
+	font-family: Yandex Sans Display Light;
+}
+.content-text h1 {font-size: 32px;}
+
+
+.label form-label {
+    display: inline-block;
+    min-width: 150px;
+    vertical-align: top;
+}
+
+.label:focus {
+  background-color: #ddd;
+  outline: none;
+}
+.form-error {
+    list-style: none;
+    padding: 0;
+    color: #CC0000;
+}
+
+/* Set a style for the submit/register button */
+.save-form {
+  background-color: #7d502d;
+  color: #3b2819;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.save-form:hover {
+  opacity:1;
+}
+
+div.button {
+	background: #3F4137;
+	max-width: 200px;
+	margin: 0 auto;
+	padding: 5px 20px 5px 20px;
+	border-radius: 10px;
+	font-size: 20px;
+}
+
+
+.list-pages {
+	text-align: center;
+	margin: 0 0 20px 0;
+}
+.list-pages ul {
+	margin: 20px 0 0 0;
+	padding: 0;
+	list-style: none;
+}
+.list-pages ul li {
+	display: inline-block;
+	margin: 0 20px 0 0;
+}
+.list-pages a {
+	color: #000;
+	font-size: 24px;
+	text-decoration: none;
+}
+.list-pages .page-num {
+	display: inline-block;
+	width: 60px;
+	height: 44px;
+	padding: 16px 0 0 0;
+	border: 1px solid #d0d0d0;
+	border-radius: 30px;
+}
+.list-pages .page-num:hover {
+	box-shadow: 3px 3px 1px #d0d0d0;
+}
+

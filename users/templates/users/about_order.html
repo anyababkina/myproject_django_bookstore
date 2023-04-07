@@ -1,0 +1,14 @@
+{% extends 'books/base.html' %}
+{% block title %}Заказ {{ order.id }} {% endblock title %}
+{% block content %}
+<h2><p align="center" style="font-size:30px">Заказ {{ order.id }}</p></h2>
+{% for b in bookorder %}
+    <p style="font-size:25px"><a href="{{ b.book.get_absolute_url }}">{{ b.book }}</a></p>
+    <p align="right" style="font-size:20px">{{ b.sum }} р.</p>
+    <p style="font-size:20px">В заказе {{ b.amount }}</p>
+    <br />
+{% endfor %}
+<hr />
+<p align="left" style="font-size:25px">Сумма заказа: {{ order.total_sum }} р.</p>
+<hr />
+{% endblock content %}

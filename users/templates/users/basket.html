@@ -1,0 +1,19 @@
+<div class="basket">
+<h2><p align="right" style="font-size:20px">Моя корзина</p></h2>
+    <p align="right" style="font-size:20px">Товаров: {{ basket.total_amount }}</p>
+<hr>
+{% for b in basket %}
+    <p><a href="{{ b.book.get_absolute_url }}">{{ b.book.title }}</a></p><p align="right"> {{ b.sum }} р.</p>
+    <p>В заказе {{ b.amount }} <a href="{% url 'add_basket' b.book_id %}">Добавить </a><a href="{% url 'delete_basket' b.book_id %}">Удалить</a></p>
+    {% if b.book.amount == 0 %} <p style="color:red; font-weight:bolder;">Нет в наличии</p>
+    {% elif b.book.amount < 4 %} <p style="color:red; font-weight:bolder;">Товар скоро закончится! Осталось: {{ b.book.amount }}</p>{% endif %}
+    <br />
+    <hr />
+{% endfor %}
+<p align="right" style="font-size:20px">Итого: {{ basket.total_sum }} р.</p>
+<button class="save-form">{% if flag %}
+                                Оформить заказ
+                            {% else %}
+                                <a href="{% url 'order' %}">Оформить заказ</a>
+                            {% endif %}</button>
+</div>
