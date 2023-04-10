@@ -72,6 +72,7 @@ def lk(request):
     basket = Basket.objects.filter(user=request.user).select_related('book')
     return TemplateResponse(request, 'users/lk.html', {'form': form, 'basket': basket, 'order': order, 'flag': check_books(basket)})
 
+
 @login_required
 def order(request):
     basket = Basket.objects.filter(user=request.user).select_related('book')
@@ -104,3 +105,31 @@ class AboutOrderView(ListView):
         context = super().get_context_data(**kwargs)
         context['order'] = Order.objects.get(id=self.kwargs['order_id'])
         return context
+
+@login_required
+def add_basket(request, book_id):
+    book = Book.objects.get(id=book_id)
+    amount = book.amount
+    basket = Basket.objects.filter(user=request.user, book=book)
+    if not basket.exists():
+        Basket.objects.create(user=request.user, book=book, amount=1)
+    else:
+        basket = basket.first()
+        if basket.amount < amount:
+            basket.amount += 1
+            basket.save()
+        else:
+            messages.error(request, 'Книг на складе больше нет!')
+    return redirect(request.META['HTTP_REFERER'])
+
+
+@login_required
+def delete_basket(request, book_id):
+    book = Book.objects.get(id=book_id)
+    basket = Basket.objects.get(user=request.user, book=book)
+    if basket.amount > 1:
+        basket.amount -= 1
+        basket.save()
+    else:
+        basket.delete()
+    return redirect(request.META['HTTP_REFERER'])

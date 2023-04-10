@@ -8,4 +8,6 @@ urlpatterns = [
     path('profile/', lk, name='lk'),
     path('order/', order, name='order'),
     path('orders/<int:order_id>/', AboutOrderView.as_view(), name='about_order'),
+    path('basket/<int:book_id>', add_basket, name='add_basket'),
+    path('d_basket/<int:book_id>', delete_basket, name='delete_basket'),
 ]

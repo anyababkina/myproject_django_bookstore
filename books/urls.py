@@ -22,8 +22,6 @@ urlpatterns = [
     path('genres/<int:genre_id>/', GenresListView.as_view(), name='genres'),
     path('subgenres/<int:subgenre_id>/', SubGenresListView.as_view(), name='subgenres'),
     path('searching/', SearchBookListView.as_view(), name='searching'),
-    path('basket/<int:book_id>', add_basket, name='add_basket'),
-    path('d_basket/<int:book_id>', delete_basket, name='delete_basket'),
     path('api/v1/', include(rout.urls)),
     path('api/v1/user-auth/', include('rest_framework.urls'))
     # path('api/v1/booklist', BookAPIViewSet.as_view({'get': 'list', 'post': 'create'})),

@@ -1,12 +1,9 @@
 from django import template
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from django.http import HttpResponse, HttpResponseRedirect
 from django.template.response import TemplateResponse
 from django.views.generic import ListView, DetailView
 
-from users.models import Basket
+
 from .models import *
 from .forms import *
 from .utils import DataMixin
@@ -128,35 +125,6 @@ def contact_us(request):
     data = {'number_dev': number_dev, 'name_dev': name_dev, 'address': address, 'admin': admin}
     return TemplateResponse(request, 'books/contact_us.html', data)
 
-
-
-@login_required
-def add_basket(request, book_id):
-    book = Book.objects.get(id=book_id)
-    amount = book.amount
-    basket = Basket.objects.filter(user=request.user, book=book)
-    if not basket.exists():
-        Basket.objects.create(user=request.user, book=book, amount=1)
-    else:
-        basket = basket.first()
-        if basket.amount < amount:
-            basket.amount += 1
-            basket.save()
-        else:
-            messages.error(request, 'Книг на складе больше нет!')
-    return HttpResponseRedirect(request.META['HTTP_REFERER'])
-
-
-@login_required
-def delete_basket(request, book_id):
-    book = Book.objects.get(id=book_id)
-    basket = Basket.objects.get(user=request.user, book=book)
-    if basket.amount > 1:
-        basket.amount -= 1
-        basket.save()
-    else:
-        basket.delete()
-    return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 # def search(request):
 #     book = []
