@@ -22,6 +22,9 @@ class Book(models.Model):
     amount = models.PositiveIntegerField(verbose_name='Количество')
     author = models.ManyToManyField('Author')
 
+    class Meta:
+        ordering = ['id']
+
     def get_absolute_url(self):
         return reverse('about_book', kwargs={'book_id': self.pk})
 

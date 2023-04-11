@@ -1,8 +1,8 @@
 from django import template
 from django.db.models import Q
+from django.shortcuts import get_object_or_404, get_list_or_404
 from django.template.response import TemplateResponse
 from django.views.generic import ListView, DetailView
-
 
 from .models import *
 from .forms import *
@@ -37,8 +37,10 @@ class GenresListView(DataMixin, ListView):
 
     def get_queryset(self):
         if 'order-by' in self.request.GET and self.request.GET['order-by'] is not "no-order":
-            return Book.objects.filter(subgenre__genre__id=self.kwargs['genre_id'], amount__gt=0).order_by(self.request.GET['order-by'])
-        return Book.objects.filter(subgenre__genre__id=self.kwargs['genre_id'], amount__gt=0).order_by('id')
+            queryset = get_list_or_404(Book.objects.filter(subgenre__genre__id=self.kwargs['genre_id'], amount__gt=0).order_by(self.request.GET['order-by']))
+        else:
+            queryset = get_list_or_404(Book.objects.filter(subgenre__genre__id=self.kwargs['genre_id'], amount__gt=0))
+        return queryset
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -51,8 +53,11 @@ class SubGenresListView(DataMixin, ListView):
 
     def get_queryset(self):
         if 'order-by' in self.request.GET:
-            return Book.objects.filter(subgenre__id=self.kwargs['subgenre_id'], amount__gt=0).order_by(self.request.GET['order-by'])
-        return Book.objects.filter(subgenre__id=self.kwargs['subgenre_id'], amount__gt=0).order_by('id')
+            queryset = get_list_or_404(Book.objects.filter(subgenre__id=self.kwargs['subgenre_id'], amount__gt=0)
+                                      .order_by(self.request.GET['order-by']))
+        else:
+            queryset = get_list_or_404(Book.objects.filter(subgenre__id=self.kwargs['subgenre_id'], amount__gt=0))
+        return queryset
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
