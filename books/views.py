@@ -9,7 +9,6 @@ from .forms import *
 from .utils import DataMixin
 
 
-# Create your views here.
 def home(request): #обьект HttpRequest
     return TemplateResponse(request, 'books/home.html')
 
@@ -82,15 +81,15 @@ class SearchBookListView(DataMixin, ListView):
     template_name = 'books/search.html'
 
     def get_queryset(self):
-        query = self.request.GET['search']
-        book = Book.objects.filter(Q(title__icontains=query) | Q(author__author_name__icontains=query)).distinct()
+        search_str = self.request.GET['search']
+        book = Book.objects.filter(Q(title__icontains=search_str) | Q(author__author_name__icontains=search_str), amount__gt=0).distinct()
         if 'order-by' in self.request.GET and self.request.GET['order-by'] is not "no-order":
             return book.order_by(self.request.GET['order-by'])
         return book
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['query'] = self.request.GET['search']
+        context['search_str'] = self.request.GET['search']
         return context
 
 

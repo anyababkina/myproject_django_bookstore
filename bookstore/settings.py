@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os.path
+import sys
 from pathlib import Path
 
 import django.core.cache.backends.db
@@ -160,3 +161,6 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ]
 }
+#
+# if 'test' in sys.argv:
+#     CAPTCHA_TEST_MODE = True

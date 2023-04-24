@@ -17,7 +17,7 @@
             <li><a href="{% url 'contacts' %}">Контакты</a> </li>
             <li class="search-string">
                     <form action="{% url 'searching' %}" method="get">
-                        <input name="search" type="text" placeholder="Искать здесь...">
+                        <input name="search" type="text" placeholder="Искать здесь..." {% if search_str %} value="{{search_str}}" {% endif %}>
                         <button type="submit">&gt;</button>
                     </form>
             </li>

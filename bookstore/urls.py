@@ -13,6 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import sys
+
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -20,14 +22,17 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path, include
 
 
-
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('books.urls')),
     path('user/', include('users.urls')),
     path('captcha/', include('captcha.urls')),
+    path('api/', include('books.api_books.urls'))
 ]
+
+
+if 'test' in sys.argv:
+    CAPTCHA_TEST_MODE = True
 
 if settings.DEBUG:
     import debug_toolbar
@@ -38,6 +43,3 @@ if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += staticfiles_urlpatterns()
 
-# GET /books front
-# GET api/v1/book - back
-# GET api/v2/books - back v2

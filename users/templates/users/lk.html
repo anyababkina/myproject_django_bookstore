@@ -1,7 +1,7 @@
 {% extends 'books/base.html' %}
 {% block title %}{{ user.username }}{% endblock title %}
 {% block content %}
-<h1><p align="center" style="font-size:30px"> Личный кабинет пользователя {{ user.username }}</p></h1>
+<h1><p align="center" style="font-size:30px"> Личный кабинет пользователя {{ user.email }}</p></h1>
 <div class="container-profile">
     <div class="profile">
         <h2><p align="left" style="font-size:20px">Заполните информацию о себе, чтобы получить доступ к персональным скидкам</p></h2>

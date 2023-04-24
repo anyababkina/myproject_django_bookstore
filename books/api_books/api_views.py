@@ -1,8 +1,8 @@
 from rest_framework import generics, viewsets
 from rest_framework.decorators import action
 
-from books.permissions import IsAdminOrReadOnly
-from books.serializers import *
+from books.api_books.permissions import IsAdminOrReadOnly
+from books.api_books.serializers import *
 from books.models import Book, Genre, SubGenre, Author
 
 

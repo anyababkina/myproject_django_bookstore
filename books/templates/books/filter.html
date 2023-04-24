@@ -1,13 +1,12 @@
-<form method="get">
-  {% if query %}
-     <input type="hidden" name="search" value={{ query }} />
+<form method="get">Сортировать по:
+  {% if search_str %}
+     <input type="hidden" name="search" value={{ search_str }} />
   {% endif %}
 <select name="order-by">
-  <option value="id">Сортировать по:</option>
-  <option value="-price">убыванию цены</option>
-  <option value="price">возрастанию цены</option>
-  <option value="-amount">количеству на складе (по убыванию)</option>
-  <option value="amount">количеству на складе (по возрастанию)</option>
+  <option value="id">---------------------</option>
+  {% for value, name in option %}
+  <option value="{{ value }}" {% if sel_value == value %}selected{% endif %}>{{ name }}</option>
+  {% endfor %}
 </select>
   <button type="submit">Применить</button>
 </form>
